@@ -32,3 +32,46 @@ if(!empty($_POST['list-title'])) {
 
     Header('Location: /splists/views/board.php?list=' . $bdd->lastInsertId());
 }
+
+/* 
+READ (1 element) : Lecteure d'une liste
+*/
+
+function getList($idList) {
+
+    $bdd = dbConnect('splists', 'root', '', 3308);
+
+    $reqListe = 'SELECT * FROM lists WHERE id =' .$idList;
+    
+    $resListe = $bdd->query($reqListe);
+
+    $liste = $resListe->fetch();
+
+    return $liste;
+}
+
+/* 
+READ : toutes les tasks d'une liste
+*/
+function getTasks($idList) {
+
+    $bdd = dbConnect('splists', 'root', '', 3308);
+
+    $reqTasks = 'SELECT * FROM tasks WHERE id_list =' .$idList;
+    
+    $resTasks = $bdd->query($reqTasks);
+
+    //Initialise tableau vide $tasks
+    $tasks = [];
+
+
+    //Tant que j'ai des données reçues...
+    while ($donnees = $resTasks->fetch()) {
+
+        //... j'ajoute à les données à l'array tasks
+        $tasks[] = $donnees;
+    }
+
+    return $tasks;
+
+}
