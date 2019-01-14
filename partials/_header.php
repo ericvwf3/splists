@@ -4,10 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Splists - Gestionnaire de tickets</title>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/main.css">  
+    
+    <title>
+    <?php
+
+      $baseTitle = "Splists - Gestionnaire de tâches";
+
+      switch ($_SESSION['page']) {
+        case 'index':
+            echo "Bienvenue sur " . $baseTitle;
+          break;
+        case 'signup':
+            echo "Inscription | " . $baseTitle;
+          break;
+        case 'login':
+            echo "Connexion | " . $baseTitle;
+          break;
+        case 'board':
+            echo "Mes listes | " . $baseTitle;
+          break;
+        default:
+            echo $baseTitle;
+          break;
+      }
+    ?>
+    
+    </title>
+
+    
 </head>
 <body>
 
